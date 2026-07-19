@@ -161,6 +161,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 32%;
   filter: grayscale(100%);
   display: block;
 }
@@ -297,6 +298,9 @@ body {
   margin: 0 auto;
   padding: clamp(24px, 5vh, 52px) 0 clamp(40px, 8vh, 80px);
 }
+.cv-figure { width: 100%; margin-bottom: clamp(22px, 3.5vh, 36px); background: #f2f2f2; }
+.cv-figure img { width: 100%; height: auto; display: block; filter: grayscale(100%); }
+
 .cv-head { margin-bottom: clamp(26px, 4vh, 44px); }
 .cv-head .lead { font-size: clamp(28px, 3.6vw, 44px); }
 .cv-head .eyebrow { margin-bottom: 14px; }
