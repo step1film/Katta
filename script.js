@@ -32,6 +32,64 @@
   show(location.hash.replace("#", "") || "home");
 })();
 
+/* Image slideshows */
+(function () {
+  const reduce = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll(".slider").forEach((slider) => {
+    const track = slider.querySelector(".slides");
+    const slides = Array.from(track.children);
+    if (slides.length < 2) return;
+
+    const dotsWrap = slider.querySelector(".dots");
+    let idx = 0;
+    let timer = null;
+
+    slides.forEach((_, i) => {
+      const d = document.createElement("button");
+      d.className = "dot";
+      d.type = "button";
+      d.setAttribute("aria-label", "Go to slide " + (i + 1));
+      d.addEventListener("click", () => go(i));
+      dotsWrap.appendChild(d);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function update() {
+      track.style.transform = "translateX(" + -idx * 100 + "%)";
+      dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+    }
+    function go(i) {
+      idx = (i + slides.length) % slides.length;
+      update();
+      restart();
+    }
+    function restart() {
+      if (reduce) return;
+      clearInterval(timer);
+      timer = setInterval(() => go(idx + 1), 5000);
+    }
+
+    slider.querySelector(".s-prev").addEventListener("click", () => go(idx - 1));
+    slider.querySelector(".s-next").addEventListener("click", () => go(idx + 1));
+    slider.addEventListener("mouseenter", () => clearInterval(timer));
+    slider.addEventListener("mouseleave", restart);
+
+    let x0 = null;
+    slider.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener("touchend", (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+      x0 = null;
+    });
+
+    update();
+    restart();
+  });
+})();
+
 /* Rainbow trail that follows the prism cursor */
 (function () {
   const reduce = window.matchMedia &&
