@@ -68,7 +68,7 @@
     function restart() {
       if (reduce) return;
       clearInterval(timer);
-      timer = setInterval(() => go(idx + 1), 5000);
+      timer = setInterval(() => go(idx + 1), 3000);
     }
 
     slider.querySelector(".s-prev").addEventListener("click", () => go(idx - 1));
