@@ -56,7 +56,9 @@ body {
   color: var(--black);
   text-decoration: none;
   white-space: nowrap;
+  transition: opacity .25s ease;
 }
+.brand:hover { opacity: .55; }
 
 .menu {
   display: flex;
