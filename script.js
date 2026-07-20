@@ -115,10 +115,24 @@
   window.addEventListener("resize", resize);
 
   const pts = [];
-  const MAX = 24;
+  const MAX = 190;   // trail length in points
+  const STEP = 4;    // interpolate a point every few px -> dense, smooth line
+  let last = null;
   window.addEventListener("mousemove", (e) => {
-    pts.push({ x: e.clientX, y: e.clientY });
-    if (pts.length > MAX) pts.shift();
+    const x = e.clientX, y = e.clientY;
+    if (last) {
+      const dx = x - last.x, dy = y - last.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist > STEP) {
+        const n = Math.floor(dist / STEP);
+        for (let i = 1; i <= n; i++) {
+          pts.push({ x: last.x + (dx * i) / n, y: last.y + (dy * i) / n });
+        }
+      }
+    }
+    pts.push({ x, y });
+    last = { x, y };
+    while (pts.length > MAX) pts.shift();
   });
 
   let hue = 0;
@@ -126,20 +140,28 @@
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    for (let i = 1; i < pts.length; i++) {
+    const n = pts.length;
+    for (let i = 1; i < n; i++) {
       const a = pts[i - 1];
       const b = pts[i];
-      const t = i / pts.length;
-      ctx.strokeStyle = "hsla(" + ((hue + i * 14) % 360) + ", 95%, 55%, " + (t * 0.9) + ")";
-      ctx.lineWidth = t * 7 + 1;
+      const t = i / n;                       // 0 = tail, 1 = head (cursor)
+      const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      ctx.strokeStyle = "hsla(" + ((hue + i * 2.6) % 360) + ", 95%, 56%, " + (0.12 + t * 0.88) + ")";
+      ctx.lineWidth = t * t * 7 + 0.6;       // thin tail tapering to a thick head
       ctx.beginPath();
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(b.x, b.y);
+      if (i > 1) {
+        const prev = pts[i - 2];
+        ctx.moveTo((prev.x + a.x) / 2, (prev.y + a.y) / 2);
+        ctx.quadraticCurveTo(a.x, a.y, mid.x, mid.y); // smooth through each point
+      } else {
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(mid.x, mid.y);
+      }
       ctx.stroke();
     }
-    hue = (hue + 3) % 360;
-    // shorten the tail when the mouse is still
-    if (pts.length && Math.random() < 0.35) pts.shift();
+    hue = (hue + 2) % 360;
+    // let the tail recede smoothly when the mouse rests
+    for (let k = 0; k < 3 && pts.length; k++) pts.shift();
     requestAnimationFrame(draw);
   }
   draw();
