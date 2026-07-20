@@ -107,8 +107,8 @@ body {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(8px);
-  transition: opacity .5s ease, transform .5s ease, visibility .5s;
+  transform: scale(1.02);
+  transition: opacity .7s ease, transform .9s cubic-bezier(.22, 1, .36, 1), visibility .7s;
 }
 
 .page.is-active {
@@ -116,6 +116,13 @@ body {
   visibility: visible;
   pointer-events: auto;
   transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    transform: none;
+    transition: opacity .25s ease, visibility .25s;
+  }
 }
 
 .eyebrow {
