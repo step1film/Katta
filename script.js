@@ -32,6 +32,32 @@
   show(location.hash.replace("#", "") || "home");
 })();
 
+/* Size the reel iframe so it covers its box (fullscreen, no letterbox) */
+(function () {
+  const RATIO = 16 / 9;
+  function cover() {
+    document.querySelectorAll(".reel-cover").forEach((box) => {
+      const f = box.querySelector("iframe");
+      if (!f) return;
+      const w = box.clientWidth, h = box.clientHeight;
+      if (!w || !h) return;
+      if (w / h > RATIO) {           // box wider than 16:9 -> match width
+        f.style.width = w + "px";
+        f.style.height = w / RATIO + "px";
+      } else {                       // box taller -> match height
+        f.style.height = h + "px";
+        f.style.width = h * RATIO + "px";
+      }
+    });
+  }
+  window.addEventListener("resize", cover);
+  const box = document.querySelector(".reel-cover");
+  if (box && "ResizeObserver" in window) {
+    new ResizeObserver(cover).observe(box); // re-covers when it becomes visible
+  }
+  cover();
+})();
+
 /* Image slideshows */
 (function () {
   const reduce = window.matchMedia &&
