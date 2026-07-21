@@ -34,6 +34,41 @@
   show(location.hash.replace("#", "") || "home");
 })();
 
+/* Reel sound toggle (mute/unmute) via the Vimeo Player API */
+(function () {
+  const btn = document.getElementById("reel-sound");
+  const iframe = document.querySelector("#reel-bg iframe");
+  if (!btn || !iframe) return;
+
+  let player = null;
+  let muted = true;
+
+  function initPlayer() {
+    if (player || !window.Vimeo) return;
+    try {
+      player = new Vimeo.Player(iframe);
+      player.setMuted(true).catch(function () {});
+    } catch (e) { /* API not ready */ }
+  }
+  initPlayer();
+  window.addEventListener("load", initPlayer);
+
+  btn.addEventListener("click", function () {
+    initPlayer();
+    muted = !muted;
+    btn.classList.toggle("is-muted", muted);
+    btn.setAttribute("aria-pressed", String(!muted));
+    btn.setAttribute("aria-label", muted ? "Unmute reel" : "Mute reel");
+    if (player) {
+      player.setMuted(muted).catch(function () {});
+      if (!muted) {
+        player.setVolume(1).catch(function () {});
+        player.play().catch(function () {});
+      }
+    }
+  });
+})();
+
 /* Size the reel iframe so it covers its box (fullscreen, no letterbox) */
 (function () {
   const RATIO = 16 / 9;
