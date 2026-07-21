@@ -140,26 +140,35 @@
     const now = performance.now();
     while (pts.length && now - pts[0].t > LIFE) pts.shift(); // age out old points
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
     const n = pts.length;
-    for (let i = 1; i < n; i++) {
-      const a = pts[i - 1];
-      const b = pts[i];
-      const life = Math.max(0, 1 - (now - b.t) / LIFE); // 1 = fresh head, 0 = old tail
-      const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
-      ctx.strokeStyle = "hsla(" + ((hue + i * 2) % 360) + ", 62%, 60%, " + (life * 0.7) + ")";
-      ctx.lineWidth = life * 3 + 0.4;        // thinner, softly tapering line
-      ctx.beginPath();
-      if (i > 1) {
-        const prev = pts[i - 2];
-        ctx.moveTo((prev.x + a.x) / 2, (prev.y + a.y) / 2);
-        ctx.quadraticCurveTo(a.x, a.y, mid.x, mid.y); // smooth through each point
-      } else {
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(mid.x, mid.y);
+    if (n > 2) {
+      // Build ONE tapered ribbon polygon, so a single fill can't stack into dots.
+      const left = [], right = [];
+      for (let i = 0; i < n; i++) {
+        const p = pts[i];
+        const life = Math.max(0, 1 - (now - p.t) / LIFE);
+        const w = life * 1.6 + 0.25;                  // half-width: thin, tapered
+        const a = pts[i > 0 ? i - 1 : 0];
+        const b = pts[i < n - 1 ? i + 1 : n - 1];
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const nx = -dy / len, ny = dx / len;          // unit normal
+        left.push([p.x + nx * w, p.y + ny * w]);
+        right.push([p.x - nx * w, p.y - ny * w]);
       }
-      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(left[0][0], left[0][1]);
+      for (let i = 1; i < n; i++) ctx.lineTo(left[i][0], left[i][1]);
+      for (let i = n - 1; i >= 0; i--) ctx.lineTo(right[i][0], right[i][1]);
+      ctx.closePath();
+      // Rainbow gradient along the trail that also fades toward the tail.
+      const g = ctx.createLinearGradient(pts[0].x, pts[0].y, pts[n - 1].x, pts[n - 1].y);
+      for (let s = 0; s <= 8; s++) {
+        const f = s / 8;                              // 0 = tail, 1 = head
+        g.addColorStop(f, "hsla(" + ((hue + f * 320) % 360) + ", 60%, 62%, " + (0.15 + f * 0.55) + ")");
+      }
+      ctx.fillStyle = g;
+      ctx.fill();
     }
     hue = (hue + 1.5) % 360;
     requestAnimationFrame(draw);
