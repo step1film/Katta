@@ -164,7 +164,7 @@ body {
   height: 100dvh;
   overflow: hidden;
   background: #000;
-  z-index: 1;
+  z-index: -1;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -173,7 +173,6 @@ body {
 body.home-active #reel-bg {
   opacity: 1;
   visibility: visible;
-  pointer-events: auto;
 }
 #reel-bg iframe {
   position: absolute;
@@ -200,8 +199,6 @@ body.home-active #reel-bg {
 /* On Home, lift the header/footer above the reel and switch text to white. */
 body.home-active .topbar,
 body.home-active .botbar {
-  position: relative;
-  z-index: 3;
   border-color: transparent;
   text-shadow: 0 1px 12px rgba(0, 0, 0, .55);
 }
