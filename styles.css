@@ -209,6 +209,32 @@ body.home-active .menu a.active { color: #fff; }
 body.home-active .menu a::after { background: #fff; }
 body.home-active .botbar { color: rgba(255, 255, 255, .85); }
 
+/* Sound toggle for the reel (Home only) */
+.reel-sound {
+  position: fixed;
+  right: var(--pad);
+  bottom: clamp(58px, 8vh, 84px);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  display: none;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .55);
+  background: rgba(0, 0, 0, .35);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background .2s ease, transform .2s ease;
+}
+body.home-active .reel-sound { display: grid; }
+.reel-sound:hover { background: rgba(0, 0, 0, .6); }
+.reel-sound:active { transform: scale(.94); }
+.reel-sound svg { display: block; }
+.reel-sound.is-muted .ic-sound { display: none; }
+.reel-sound:not(.is-muted) .ic-muted { display: none; }
+
 /* ---------- About content column ---------- */
 .about-content .lead { font-size: clamp(28px, 3.4vw, 44px); }
 .about-content .meta-line { margin-bottom: clamp(18px, 3vh, 26px); }
