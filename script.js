@@ -7,6 +7,8 @@
 
     pages.forEach((p) => p.classList.toggle("is-active", p.id === id));
 
+    document.body.classList.toggle("home-active", id === "home");
+
     document.querySelectorAll(".menu a").forEach((a) => {
       a.classList.toggle("active", a.dataset.nav === id);
     });

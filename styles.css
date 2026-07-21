@@ -151,22 +151,31 @@ body {
   letter-spacing: .03em;
 }
 
-/* ---------- Home: fullscreen reel ---------- */
-.page--reel {
-  display: block;
-  padding: 0;
-}
-/* Break out of the frame padding to fill the viewport width, and fill the
-   whole stage height. The iframe is sized by JS to cover (crop) this box. */
-.reel-cover {
-  position: relative;
-  height: 100%;
-  width: calc(100% + 2 * var(--pad));
-  margin: 0 calc(-1 * var(--pad));
+/* ---------- Home: fullscreen reel background ---------- */
+.page--reel { display: block; padding: 0; }
+
+/* The reel covers the whole viewport (behind the header/footer). It is only
+   visible when Home is active; the iframe is sized by JS to cover (crop). */
+#reel-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: #000;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .6s ease, visibility .6s;
 }
-.reel-cover iframe {
+body.home-active #reel-bg {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+#reel-bg iframe {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -174,6 +183,34 @@ body {
   border: 0;
   display: block;
 }
+/* Soft scrims top & bottom so the overlaid text stays legible. */
+#reel-bg::before,
+#reel-bg::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 130px;
+  pointer-events: none;
+  z-index: 1;
+}
+#reel-bg::before { top: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0)); }
+#reel-bg::after { bottom: 0; background: linear-gradient(0deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0)); }
+
+/* On Home, lift the header/footer above the reel and switch text to white. */
+body.home-active .topbar,
+body.home-active .botbar {
+  position: relative;
+  z-index: 3;
+  border-color: transparent;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .55);
+}
+body.home-active .brand { color: #fff; }
+body.home-active .menu a { color: rgba(255, 255, 255, .82); }
+body.home-active .menu a:hover,
+body.home-active .menu a.active { color: #fff; }
+body.home-active .menu a::after { background: #fff; }
+body.home-active .botbar { color: rgba(255, 255, 255, .85); }
 
 /* ---------- About content column ---------- */
 .about-content .lead { font-size: clamp(28px, 3.4vw, 44px); }
@@ -603,7 +640,6 @@ body {
   .page--cv.is-active { display: block; }
   .cv-page { padding-top: 8px; }
   .page--reel.is-active { display: block; }
-  .reel-cover { height: auto; width: 100%; margin: 0; aspect-ratio: 16 / 9; }
   .home-grid { grid-template-columns: 1fr; gap: 28px; }
   .portrait { height: 50vh; }
   .cv-cols { grid-template-columns: 1fr 1fr; }
