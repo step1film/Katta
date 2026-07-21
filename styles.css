@@ -153,22 +153,24 @@ body {
 
 /* ---------- Home: fullscreen reel ---------- */
 .page--reel {
-  display: grid;
-  place-items: center;
-  padding: clamp(10px, 2vh, 22px) 0;
+  display: block;
+  padding: 0;
 }
-.reel-frame {
+/* Break out of the frame padding to fill the viewport width, and fill the
+   whole stage height. The iframe is sized by JS to cover (crop) this box. */
+.reel-cover {
   position: relative;
   height: 100%;
-  aspect-ratio: 16 / 9;
-  max-width: 100%;
+  width: calc(100% + 2 * var(--pad));
+  margin: 0 calc(-1 * var(--pad));
+  overflow: hidden;
   background: #000;
 }
-.reel-frame iframe {
+.reel-cover iframe {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border: 0;
   display: block;
 }
@@ -600,8 +602,8 @@ body {
   .page--cv { overflow-y: visible; }
   .page--cv.is-active { display: block; }
   .cv-page { padding-top: 8px; }
-  .page--reel.is-active { display: grid; }
-  .reel-frame { height: auto; width: 100%; }
+  .page--reel.is-active { display: block; }
+  .reel-cover { height: auto; width: 100%; margin: 0; aspect-ratio: 16 / 9; }
   .home-grid { grid-template-columns: 1fr; gap: 28px; }
   .portrait { height: 50vh; }
   .cv-cols { grid-template-columns: 1fr 1fr; }
