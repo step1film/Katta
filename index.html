@@ -11,6 +11,13 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Fullscreen Director's Reel background (only shown on Home) -->
+  <div id="reel-bg" class="reel-cover" aria-hidden="true">
+    <iframe src="https://player.vimeo.com/video/1140810422?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1"
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" title="Katarina Holzmann Ekholm — Director's Reel 2026"></iframe>
+  </div>
+
   <div class="frame">
     <header class="topbar">
       <a href="#home" class="brand" data-nav="home">Katarina Holzmann Ekholm</a>
@@ -23,14 +30,8 @@
 
     <main class="stage">
 
-      <!-- HOME — Director's Reel (fullscreen, autoplay) -->
-      <section class="page page--reel is-active" id="home">
-        <div class="reel-cover">
-          <iframe src="https://player.vimeo.com/video/1140810422?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" title="Katarina Holzmann Ekholm — Director's Reel 2026"></iframe>
-        </div>
-      </section>
+      <!-- HOME — the reel plays as a fullscreen background (see #reel-bg) -->
+      <section class="page page--reel is-active" id="home"></section>
 
       <!-- ABOUT -->
       <section class="page page--about" id="about">
