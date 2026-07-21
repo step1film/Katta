@@ -115,10 +115,11 @@
   window.addEventListener("resize", resize);
 
   const pts = [];
-  const MAX = 190;   // trail length in points
-  const STEP = 4;    // interpolate a point every few px -> dense, smooth line
+  const LIFE = 600;  // ms each point stays alive -> trail works at any speed
+  const STEP = 3;    // interpolate a point every few px -> dense, smooth line
   let last = null;
   window.addEventListener("mousemove", (e) => {
+    const now = performance.now();
     const x = e.clientX, y = e.clientY;
     if (last) {
       const dx = x - last.x, dy = y - last.y;
@@ -126,17 +127,18 @@
       if (dist > STEP) {
         const n = Math.floor(dist / STEP);
         for (let i = 1; i <= n; i++) {
-          pts.push({ x: last.x + (dx * i) / n, y: last.y + (dy * i) / n });
+          pts.push({ x: last.x + (dx * i) / n, y: last.y + (dy * i) / n, t: now });
         }
       }
     }
-    pts.push({ x, y });
+    pts.push({ x, y, t: now });
     last = { x, y };
-    while (pts.length > MAX) pts.shift();
   });
 
   let hue = 0;
   function draw() {
+    const now = performance.now();
+    while (pts.length && now - pts[0].t > LIFE) pts.shift(); // age out old points
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
@@ -144,10 +146,10 @@
     for (let i = 1; i < n; i++) {
       const a = pts[i - 1];
       const b = pts[i];
-      const t = i / n;                       // 0 = tail, 1 = head (cursor)
+      const life = Math.max(0, 1 - (now - b.t) / LIFE); // 1 = fresh head, 0 = old tail
       const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
-      ctx.strokeStyle = "hsla(" + ((hue + i * 2.6) % 360) + ", 95%, 56%, " + (0.12 + t * 0.88) + ")";
-      ctx.lineWidth = t * t * 7 + 0.6;       // thin tail tapering to a thick head
+      ctx.strokeStyle = "hsla(" + ((hue + i * 2) % 360) + ", 62%, 60%, " + (life * 0.7) + ")";
+      ctx.lineWidth = life * 3 + 0.4;        // thinner, softly tapering line
       ctx.beginPath();
       if (i > 1) {
         const prev = pts[i - 2];
@@ -159,9 +161,7 @@
       }
       ctx.stroke();
     }
-    hue = (hue + 2) % 360;
-    // let the tail recede smoothly when the mouse rests
-    for (let k = 0; k < 3 && pts.length; k++) pts.shift();
+    hue = (hue + 1.5) % 360;
     requestAnimationFrame(draw);
   }
   draw();
