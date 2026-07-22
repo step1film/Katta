@@ -137,10 +137,10 @@ body {
 }
 
 .lead {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 500;
-  line-height: .98;
-  letter-spacing: -.01em;
+  font-family: "Alte Haas Grotesk", "Inter", sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.02em;
   font-size: clamp(34px, 5.2vw, 68px);
   text-wrap: balance;
 }
@@ -349,7 +349,8 @@ body.home-active .reel-sound { display: grid; }
 .about-wrap .contact { margin-top: 12px; }
 
 /* ---------- Works ---------- */
-.works-wrap { width: 100%; max-width: 900px; }
+.page--works { justify-content: center; }
+.works-wrap { width: 100%; max-width: 720px; margin: 0 auto; text-align: center; }
 .works-wrap .eyebrow { margin-bottom: 8px; }
 .works-sub {
   font-family: "Cormorant Garamond", serif;
@@ -378,8 +379,9 @@ body.home-active .reel-sound { display: grid; }
 .works-list li:last-child { border-bottom: 1px solid var(--line); }
 
 .w-title {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 500;
+  font-family: "Alte Haas Grotesk", "Inter", sans-serif;
+  font-weight: 700;
+  letter-spacing: -.01em;
   font-size: clamp(20px, 2.6vw, 30px);
 }
 .w-meta {
@@ -453,14 +455,17 @@ body.home-active .reel-sound { display: grid; }
 /* ---------- Works: clickable rows ---------- */
 .works-list li.has-page { display: block; padding: 0; }
 .work-link {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: baseline;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
   padding: clamp(14px, 2.4vh, 22px) 0;
   text-decoration: none;
   color: inherit;
 }
+.work-link .w-title { order: 1; }
+.work-link .w-year  { order: 2; }
+.work-link .w-meta  { order: 3; }
 .has-page .w-title::after {
   content: " \2192";
   color: var(--grey);
@@ -674,8 +679,6 @@ body.home-active .reel-sound { display: grid; }
   .home-grid { grid-template-columns: 1fr; gap: 28px; }
   .portrait { height: 50vh; }
   .cv-cols { grid-template-columns: 1fr 1fr; }
-  .works-list li { grid-template-columns: 1fr auto; }
-  .w-meta { grid-column: 1 / -1; order: 3; }
 }
 
 @media (max-width: 460px) {
