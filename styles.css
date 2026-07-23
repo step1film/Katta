@@ -356,7 +356,7 @@ body.home-active .reel-sound { display: grid; }
 .works-wrap .eyebrow { margin-bottom: 8px; }
 .works-sub {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(20px, 2.4vw, 28px);
+  font-size: clamp(24px, 3vw, 36px);
   margin-bottom: clamp(18px, 3vh, 30px);
 }
 .w-tag {
@@ -378,7 +378,6 @@ body.home-active .reel-sound { display: grid; }
   padding: clamp(14px, 2.4vh, 22px) 0;
   border-top: 1px solid var(--line);
 }
-.works-list li:last-child { border-bottom: 1px solid var(--line); }
 
 .w-title {
   font-family: "Alte Haas Grotesk", "Inter", sans-serif;
