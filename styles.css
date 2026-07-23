@@ -452,6 +452,14 @@ body.home-active .reel-sound { display: grid; }
 }
 .cv-row .desc { color: #2a2a2a; }
 .cv-row .desc em { font-style: normal; color: var(--grey); }
+.cv-row .desc a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .2s ease;
+}
+.cv-row .desc a:hover { color: var(--grey); }
 .cv-contact { margin-top: clamp(24px, 4vh, 40px); }
 
 /* ---------- Works: clickable rows ---------- */
