@@ -261,7 +261,9 @@ body.home-active .reel-sound { display: grid; }
 
 /* One frame on About holding the portrait and the on-set photographs.
    It is a .slider, so these rules undo the 16:9 black box the film
-   slideshows use — nothing is cropped and the frame stays invisible. */
+   slideshows use, and the frame itself stays invisible. Every slide
+   fills the same 2:3 frame edge to edge, so no photograph looks
+   smaller than the one before it. */
 .portrait.slider {
   position: relative;
   width: min(100%, 420px);
@@ -275,7 +277,8 @@ body.home-active .reel-sound { display: grid; }
 .portrait .slide img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 50% 45%;
   display: block;
 }
 
