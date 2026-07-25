@@ -4,7 +4,7 @@
   --grey: #6b6b6b;
   --line: #e6e6e6;
   --pad: clamp(20px, 4vw, 56px);
-  --star-cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><path d='M12 2 L14.6 8.6 L21.6 9.1 L16.2 13.6 L18 20.4 L12 16.5 L6 20.4 L7.8 13.6 L2.4 9.1 L9.4 8.6 Z' fill='%23ffffff' fill-opacity='0.15' stroke='%23111111' stroke-width='1.2' stroke-linejoin='round'/></svg>") 13 13, auto;
+  --star-cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24'><path d='M12 2 L13.82 9.49 L21.51 8.91 L14.95 12.96 L17.88 20.09 L12 15.1 L6.12 20.09 L9.05 12.96 L2.49 8.91 L10.18 9.49 Z' fill='%23ffffff' fill-opacity='0.15' stroke='%23111111' stroke-width='1.1' stroke-linejoin='miter' stroke-miterlimit='10'/></svg>") 13 13, auto;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; cursor: var(--star-cursor); }
@@ -47,6 +47,7 @@ body {
   gap: 24px;
   padding: clamp(18px, 3vh, 34px) 0;
   border-bottom: 1px solid var(--line);
+  font-family: "Alte Haas Grotesk", "Inter", sans-serif;
 }
 
 .brand {
@@ -258,22 +259,41 @@ body.home-active .reel-sound { display: grid; }
   align-items: center;
 }
 
-.portrait {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* One frame on About holding the portrait and the on-set photographs.
+   It is a .slider, so these rules undo the 16:9 black box the film
+   slideshows use — nothing is cropped and the frame stays invisible. */
+.portrait.slider {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 2 / 3;
+  max-height: min(78vh, 640px);
+  margin: 0 auto;
   background: transparent;
+  overflow: hidden;
 }
 
-.portrait img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: min(78vh, 640px);
+.portrait .slide img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  filter: grayscale(100%);
   display: block;
 }
+
+/* Arrows and dots read against the white frame, not a dark still */
+.portrait .s-nav {
+  background: rgba(255, 255, 255, .88);
+  border: 1px solid var(--line);
+  color: var(--black);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .08);
+}
+.portrait .s-prev { left: 6px; }
+.portrait .s-next { right: 6px; }
+.portrait .dots { bottom: 10px; }
+.portrait .dot {
+  background: rgba(255, 255, 255, .8);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .35);
+}
+.portrait .dot.active { background: var(--black); }
 
 .cv .lead { margin-bottom: 0; }
 
@@ -352,7 +372,8 @@ body.home-active .reel-sound { display: grid; }
 
 /* ---------- Works ---------- */
 .page--works { justify-content: center; }
-.works-wrap { width: 100%; max-width: 720px; margin: 0 auto; text-align: center; }
+/* The column itself is centred (as on CV); the text inside stays left-aligned. */
+.works-wrap { width: 100%; max-width: 900px; margin: 0 auto; }
 .works-wrap .eyebrow { margin-bottom: 8px; }
 .works-sub {
   font-family: "Cormorant Garamond", serif;
@@ -464,17 +485,14 @@ body.home-active .reel-sound { display: grid; }
 /* ---------- Works: clickable rows ---------- */
 .works-list li.has-page { display: block; padding: 0; }
 .work-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 20px;
   padding: clamp(14px, 2.4vh, 22px) 0;
   text-decoration: none;
   color: inherit;
 }
-.work-link .w-title { order: 1; }
-.work-link .w-year  { order: 2; }
-.work-link .w-meta  { order: 3; }
 .has-page .w-title::after {
   content: " \2192";
   color: var(--grey);
@@ -661,6 +679,7 @@ body.home-active .reel-sound { display: grid; }
   justify-content: space-between;
   padding: clamp(14px, 2.4vh, 24px) 0;
   border-top: 1px solid var(--line);
+  font-family: "Alte Haas Grotesk", "Inter", sans-serif;
   font-size: 11.5px;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -686,8 +705,11 @@ body.home-active .reel-sound { display: grid; }
   .cv-page { padding-top: 8px; }
   .page--reel.is-active { display: block; }
   .home-grid { grid-template-columns: 1fr; gap: 28px; }
-  .portrait img { max-height: 60vh; }
+  .portrait.slider { max-height: 60vh; }
   .cv-cols { grid-template-columns: 1fr 1fr; }
+  .works-list li,
+  .work-link { grid-template-columns: 1fr auto; }
+  .w-meta { grid-column: 1 / -1; order: 3; }
 }
 
 @media (max-width: 460px) {

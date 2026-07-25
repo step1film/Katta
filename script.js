@@ -106,6 +106,8 @@
     if (slides.length < 2) return;
 
     const dotsWrap = slider.querySelector(".dots");
+    // data-autoplay="false" -> the viewer browses with the arrows / dots only
+    const autoplay = slider.dataset.autoplay !== "false";
     let idx = 0;
     let timer = null;
 
@@ -129,7 +131,7 @@
       restart();
     }
     function restart() {
-      if (reduce) return;
+      if (reduce || !autoplay) return;
       clearInterval(timer);
       timer = setInterval(() => go(idx + 1), 3000);
     }
