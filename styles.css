@@ -259,22 +259,41 @@ body.home-active .reel-sound { display: grid; }
   align-items: center;
 }
 
-.portrait {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* One frame on About holding the portrait and the on-set photographs.
+   It is a .slider, so these rules undo the 16:9 black box the film
+   slideshows use — nothing is cropped and the frame stays invisible. */
+.portrait.slider {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 2 / 3;
+  max-height: min(78vh, 640px);
+  margin: 0 auto;
   background: transparent;
+  overflow: hidden;
 }
 
-.portrait img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: min(78vh, 640px);
+.portrait .slide img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  filter: grayscale(100%);
   display: block;
 }
+
+/* Arrows and dots read against the white frame, not a dark still */
+.portrait .s-nav {
+  background: rgba(255, 255, 255, .88);
+  border: 1px solid var(--line);
+  color: var(--black);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .08);
+}
+.portrait .s-prev { left: 6px; }
+.portrait .s-next { right: 6px; }
+.portrait .dots { bottom: 10px; }
+.portrait .dot {
+  background: rgba(255, 255, 255, .8);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .35);
+}
+.portrait .dot.active { background: var(--black); }
 
 .cv .lead { margin-bottom: 0; }
 
@@ -338,31 +357,6 @@ body.home-active .reel-sound { display: grid; }
   padding-bottom: 2px;
 }
 .contact a:hover { color: var(--grey); border-color: var(--grey); }
-
-/* ---------- About (scrollable panel) ---------- */
-.page--about {
-  display: block;
-  align-items: initial;
-  overflow-y: auto;
-  scrollbar-width: thin;
-}
-.about-page {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: clamp(20px, 4vh, 44px) 0 clamp(36px, 7vh, 72px);
-}
-
-/* Katta on set — manual slideshow (arrows / dots only, never auto-plays) */
-.onset { margin-top: clamp(30px, 5vh, 58px); }
-.onset .eyebrow { margin-bottom: 14px; text-align: center; }
-.onset .slider {
-  aspect-ratio: 3 / 4;
-  width: 100%;
-  max-width: 440px;
-  margin: 0 auto;
-}
-/* Show the whole frame — these are portraits of different ratios, never crop */
-.onset .slide img { object-fit: contain; }
 
 /* ---------- About ---------- */
 .about-wrap { max-width: 640px; }
@@ -708,13 +702,10 @@ body.home-active .reel-sound { display: grid; }
   .page.is-active { display: flex; }
   .page--cv { overflow-y: visible; }
   .page--cv.is-active { display: block; }
-  .page--about { overflow-y: visible; }
-  .page--about.is-active { display: block; }
-  .about-page { padding-top: 8px; }
   .cv-page { padding-top: 8px; }
   .page--reel.is-active { display: block; }
   .home-grid { grid-template-columns: 1fr; gap: 28px; }
-  .portrait img { max-height: 60vh; }
+  .portrait.slider { max-height: 60vh; }
   .cv-cols { grid-template-columns: 1fr 1fr; }
   .works-list li,
   .work-link { grid-template-columns: 1fr auto; }
