@@ -20,8 +20,12 @@ python3 -m http.server
 The site is plain static files, published with GitHub Pages from the
 `main` branch, root folder (Settings → Pages → Deploy from a branch).
 
-`CNAME` holds the custom domain `kasplock.com`. The domain's DNS needs
-these records at the registrar:
+The custom domain is `kasplock.com`, set under Settings → Pages → Custom
+domain, which commits a `CNAME` file. Add it only once DNS points at
+GitHub — while a custom domain is configured, the `github.io` URL
+redirects to it, so the site can't be previewed there.
+
+The domain's DNS needs these records at the registrar:
 
 | Record | Name | Value |
 | --- | --- | --- |
