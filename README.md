@@ -25,15 +25,32 @@ domain, which commits a `CNAME` file. Add it only once DNS points at
 GitHub — while a custom domain is configured, the `github.io` URL
 redirects to it, so the site can't be previewed there.
 
-The domain's DNS needs these records at the registrar:
+`kasplock.com` is registered at Cargo, which also hosts its DNS. Records
+are edited under Account Settings → Domain Names → ⋯ → Edit DNS. The
+domain needs these records:
 
 | Record | Name | Value |
 | --- | --- | --- |
 | A | `@` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
 | AAAA | `@` | `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153` |
-| CNAME | `www` | `step1film.github.io` |
+| CNAME | `www` | `step1film.github.io.` |
 
 Every push to `main` republishes the site.
+
+### Rolling back to Cargo
+
+Before the move, the domain's complete DNS was two records — no MX, no
+TXT, no mail on the domain. To hand `kasplock.com` back to the Cargo
+site, restore exactly:
+
+| Record | Name | Value |
+| --- | --- | --- |
+| ANAME | `@` | `domain.cargo.site.` |
+| ANAME | `www` | `domain.cargo.site.` |
+
+DNS changes take effect gradually — Cargo notes up to 48 hours, usually
+much faster. A rollback is subject to the same delay, so it is not
+instant either.
 
 ## Replace the portrait
 
