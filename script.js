@@ -16,6 +16,8 @@
     if (history.replaceState) {
       history.replaceState(null, "", "#" + id);
     }
+
+    document.dispatchEvent(new CustomEvent("pagechange", { detail: { id } }));
   }
 
   links.forEach((link) => {
@@ -34,24 +36,42 @@
   show(location.hash.replace("#", "") || "home");
 })();
 
-/* Reel sound toggle (mute/unmute) via the Vimeo Player API */
+/* Reel playback and sound toggle via the Vimeo Player API.
+   The reel is only visible on Home, so it is paused on every other page
+   instead of playing unseen behind them, sound and all. */
 (function () {
   const btn = document.getElementById("reel-sound");
   const iframe = document.querySelector("#reel-bg iframe");
-  if (!btn || !iframe) return;
+  if (!iframe) return;
 
   let player = null;
   let muted = true;
+  // The first show() runs before this block, so the body class is already set
+  let onHome = document.body.classList.contains("home-active");
 
   function initPlayer() {
     if (player || !window.Vimeo) return;
     try {
       player = new Vimeo.Player(iframe);
       player.setMuted(true).catch(function () {});
+      sync();
     } catch (e) { /* API not ready */ }
+  }
+  function sync() {
+    if (!player) return;
+    if (onHome) player.play().catch(function () {});
+    else player.pause().catch(function () {});
   }
   initPlayer();
   window.addEventListener("load", initPlayer);
+
+  document.addEventListener("pagechange", function (e) {
+    onHome = e.detail.id === "home";
+    initPlayer();
+    sync();
+  });
+
+  if (!btn) return;
 
   btn.addEventListener("click", function () {
     initPlayer();
