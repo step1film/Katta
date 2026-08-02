@@ -15,6 +15,22 @@ Just open `index.html` in a browser, or serve the folder:
 python3 -m http.server
 ```
 
+## Publishing
+
+The site is plain static files, published with GitHub Pages from the
+`main` branch, root folder (Settings → Pages → Deploy from a branch).
+
+`CNAME` holds the custom domain `kasplock.com`. The domain's DNS needs
+these records at the registrar:
+
+| Record | Name | Value |
+| --- | --- | --- |
+| A | `@` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
+| AAAA | `@` | `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153` |
+| CNAME | `www` | `step1film.github.io` |
+
+Every push to `main` republishes the site.
+
 ## Replace the portrait
 
 The site currently uses a placeholder at `assets/katarina.svg`.
