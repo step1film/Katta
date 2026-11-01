@@ -657,6 +657,15 @@ body.home-active .reel-sound { display: grid; }
   padding: 4px 0;
 }
 .proj-section li .yr { color: var(--grey); font-variant-numeric: tabular-nums; }
+/* Links in these lists read the same way as the ones on the CV */
+.proj-section li a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .2s ease;
+}
+.proj-section li a:hover { color: var(--grey); }
 .proj-thanks { font-size: 13px; line-height: 1.7; color: #3a3a3a; }
 .proj-thanks .lbl { color: var(--grey); }
 
