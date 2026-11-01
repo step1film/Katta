@@ -32,8 +32,12 @@ domain needs these records:
 | Record | Name | Value |
 | --- | --- | --- |
 | A | `@` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
-| AAAA | `@` | `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153` |
 | CNAME | `www` | `step1film.github.io.` |
+
+Four separate A records, all named `@`. Cargo's record types are A,
+ANAME, CNAME, MX, SPF, TXT, SRV and HTTPRED — there is no AAAA, so the
+domain has no IPv6 and GitHub's `2606:50c0:800x::153` addresses are left
+out. The site is reachable over IPv4 either way.
 
 Every push to `main` republishes the site.
 
