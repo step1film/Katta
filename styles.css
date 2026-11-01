@@ -52,9 +52,10 @@ body {
 
 .brand {
   font-family: "Alte Haas Grotesk", "Inter", sans-serif;
-  font-size: clamp(15px, 1.5vw, 19px);
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(14px, 1.35vw, 17px);
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--black);
   text-decoration: none;
   white-space: nowrap;
@@ -259,12 +260,8 @@ body.home-active .reel-sound { display: grid; }
   align-items: center;
 }
 
-/* One frame on About holding the portrait and the on-set photographs.
-   It is a .slider, so these rules undo the 16:9 black box the film
-   slideshows use, and the frame itself stays invisible. Every slide
-   fills the same 2:3 frame edge to edge, so no photograph looks
-   smaller than the one before it. */
-.portrait.slider {
+/* The single photograph on About: a 2:3 frame it fills edge to edge. */
+.portrait {
   position: relative;
   width: min(100%, 420px);
   aspect-ratio: 2 / 3;
@@ -274,29 +271,13 @@ body.home-active .reel-sound { display: grid; }
   overflow: hidden;
 }
 
-.portrait .slide img {
+.portrait img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 45%;
   display: block;
 }
-
-/* Arrows and dots read against the white frame, not a dark still */
-.portrait .s-nav {
-  background: rgba(255, 255, 255, .88);
-  border: 1px solid var(--line);
-  color: var(--black);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, .08);
-}
-.portrait .s-prev { left: 6px; }
-.portrait .s-next { right: 6px; }
-.portrait .dots { bottom: 10px; }
-.portrait .dot {
-  background: rgba(255, 255, 255, .8);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, .35);
-}
-.portrait .dot.active { background: var(--black); }
 
 .cv .lead { margin-bottom: 0; }
 
@@ -344,6 +325,13 @@ body.home-active .reel-sound { display: grid; }
   font-size: 12.5px;
   letter-spacing: .02em;
 }
+
+/* Film titles are set in italics wherever they appear in running text.
+   (.cv-row .desc em is reset to upright for notes like "(upcoming)",
+   so the title class restores the italics there.) */
+.film,
+.cv-row .desc .film { font-style: italic; }
+.cv-row .desc .film { color: inherit; }
 
 .contact {
   display: flex;
@@ -569,27 +557,30 @@ body.home-active .reel-sound { display: grid; }
 .slides { display: flex; height: 100%; transition: transform .55s cubic-bezier(.4, 0, .2, 1); }
 .slide { min-width: 100%; height: 100%; }
 .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Minimal arrows: a bare chevron over the still, no button chrome. */
 .s-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 44px;
+  padding: 0;
   border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .82);
-  color: #111;
-  font-size: 20px;
+  background: none;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 300;
   line-height: 1;
   display: grid;
   place-items: center;
   cursor: pointer;
-  opacity: .85;
-  transition: background .2s ease, opacity .2s ease;
+  opacity: .5;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
+  transition: opacity .2s ease;
 }
-.s-nav:hover { background: #fff; opacity: 1; }
-.s-prev { left: 14px; }
-.s-next { right: 14px; }
+.s-nav:hover { opacity: 1; }
+.s-prev { left: 4px; }
+.s-next { right: 4px; }
 .dots {
   position: absolute;
   bottom: 14px;
@@ -708,7 +699,7 @@ body.home-active .reel-sound { display: grid; }
   .cv-page { padding-top: 8px; }
   .page--reel.is-active { display: block; }
   .home-grid { grid-template-columns: 1fr; gap: 28px; }
-  .portrait.slider { max-height: 60vh; }
+  .portrait { max-height: 60vh; }
   .cv-cols { grid-template-columns: 1fr 1fr; }
   .works-list li,
   .work-link { grid-template-columns: 1fr auto; }

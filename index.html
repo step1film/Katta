@@ -31,9 +31,9 @@
 <body>
   <!-- Fullscreen Director's Reel background (only shown on Home) -->
   <div id="reel-bg" class="reel-cover" aria-hidden="true">
-    <iframe src="https://player.vimeo.com/video/1140810422?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1"
+    <iframe src="https://player.vimeo.com/video/1239624685?h=d16039291d&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;controls=0&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1"
       allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-      referrerpolicy="strict-origin-when-cross-origin" title="Katarina Holzmann Ekholm — Director's Reel 2026"></iframe>
+      referrerpolicy="strict-origin-when-cross-origin" title="Katarina Holzmann Ekholm — Director's Reel"></iframe>
   </div>
 
   <div class="frame">
@@ -54,44 +54,29 @@
       <!-- ABOUT -->
       <section class="page page--about" id="about">
         <div class="home-grid">
-          <!-- One frame: the black-and-white camera photograph first, then the
-               portrait and the on-set photographs. Arrows only, no autoplay. -->
-          <div class="portrait slider slider--manual" data-autoplay="false"
-               aria-roledescription="carousel"
-               aria-label="Katarina Holzmann Ekholm — portrait and on-set photographs">
-            <div class="slides">
-              <div class="slide"><img src="assets/web/about02.jpg" alt="Katarina Holzmann Ekholm behind the camera" /></div>
-              <div class="slide"><img src="assets/katta-bw.jpg" alt="Portrait of Katarina Holzmann Ekholm" loading="lazy" /></div>
-              <div class="slide"><img src="assets/web/about01.jpg" alt="Katarina Holzmann Ekholm — film still" loading="lazy" /></div>
-              <div class="slide"><img src="assets/web/onset01.jpg" alt="Katta on set — photograph 1" loading="lazy" /></div>
-              <div class="slide"><img src="assets/web/onset02.jpg" alt="Katta on set — photograph 2" loading="lazy" /></div>
-              <div class="slide"><img src="assets/web/onset03.jpg" alt="Katta on set — photograph 3" loading="lazy" /></div>
-              <div class="slide"><img src="assets/web/onset04.jpg" alt="Katta on set — photograph 4" loading="lazy" /></div>
-              <div class="slide"><img src="assets/web/onset05.jpg" alt="Katta on set — photograph 5" loading="lazy" /></div>
-              <div class="slide"><img src="assets/web/onset06.jpg" alt="Katta on set — photograph 6" loading="lazy" /></div>
-              <div class="slide"><img src="assets/web/onset07.jpg" alt="Katta on set — photograph 7" loading="lazy" /></div>
-            </div>
-            <button class="s-nav s-prev" type="button" aria-label="Previous photograph">&#8249;</button>
-            <button class="s-nav s-next" type="button" aria-label="Next photograph">&#8250;</button>
-            <div class="dots" aria-hidden="true"></div>
-          </div>
+          <!-- One photograph, in the same frame the slideshow used -->
+          <figure class="portrait">
+            <img src="assets/web/about02.jpg" alt="Katarina Holzmann Ekholm behind the camera" />
+          </figure>
           <div class="about-content">
             <p class="eyebrow">About</p>
             <h1 class="lead name-lead">Katarina Holzmann Ekholm</h1>
             <p class="meta-line">Film director · b. 1997 · based in Stockholm, Sweden</p>
             <p class="about-text">
-              Katarina Holzmann Ekholm is a film director from Gothenburg,
-              Sweden. She graduated from the Gerrit Rietveld Academie in
-              Amsterdam in 2024 with the short film <em>Hökarängen City</em>,
-              which premiered at Eye Filmmuseum in Amsterdam and won Best
-              Director and Best Casting at Sweden Short Film Festival 2025.
-              <em>Hökarängen City</em> also competed in the national
-              competition at the Uppsala International Short Film Festival.
+              Katarina Holzmann Ekholm is a Swedish film director based in
+              Stockholm. She graduated from the Gerrit Rietveld Academie in
+              Amsterdam with the short film <em class="film">Hökarängen City</em>.
+              The film premiered at the Eye Film Museum, competed in the
+              national competition at Uppsala International Short Film
+              Festival, and won Best Director and Best Casting at Sweden Short
+              Film Festival.
             </p>
             <p class="about-text">
-              Her most recent works are the shorts <em>Cheese</em> and
-              <em>Dough</em>, filmed in Atlanta, GA, in collaboration with
-              screenwriter Charles Rainey, premiering in 2026.
+              Katarina recently took part in Bergman Week's Talent Days for
+              emerging filmmakers on Fårö Island. Her latest projects are the
+              short films <em class="film">Cheese</em> and
+              <em class="film">Dough</em>, shot in Atlanta, USA, and set for
+              release in 2027.
             </p>
             <p class="contact">
               <a href="#cv" data-nav="cv">CV</a>
@@ -112,14 +97,21 @@
               <a class="work-link" href="#work-dough" data-nav="work-dough">
                 <span class="w-title">Dough <span class="w-tag">upcoming</span></span>
                 <span class="w-meta">Director · written by Charles Rainey · US</span>
-                <span class="w-year">2026</span>
+                <span class="w-year">2027</span>
               </a>
             </li>
             <li class="has-page">
               <a class="work-link" href="#work-cheese" data-nav="work-cheese">
                 <span class="w-title">Cheese <span class="w-tag">upcoming</span></span>
                 <span class="w-meta">Director · written by Charles Rainey · US</span>
-                <span class="w-year">2026</span>
+                <span class="w-year">2027</span>
+              </a>
+            </li>
+            <li class="has-page">
+              <a class="work-link" href="#work-stacy" data-nav="work-stacy">
+                <span class="w-title">Stacy on Clouds</span>
+                <span class="w-meta">Director · Writer · Editor · Producer · NL</span>
+                <span class="w-year">2025</span>
               </a>
             </li>
             <li class="has-page">
@@ -136,13 +128,6 @@
                 <span class="w-year">2023</span>
               </a>
             </li>
-            <li class="has-page">
-              <a class="work-link" href="#work-stacy" data-nav="work-stacy">
-                <span class="w-title">Stacy on Clouds <span class="w-tag">work in progress</span></span>
-                <span class="w-meta">Director · Writer · Editor · NL</span>
-                <span class="w-year">2024</span>
-              </a>
-            </li>
           </ul>
         </div>
       </section>
@@ -151,35 +136,34 @@
       <section class="page page--cv" id="cv">
         <div class="cv-page">
           <header class="cv-head">
-            <p class="eyebrow">Curriculum Vitae</p>
+            <p class="eyebrow">CV</p>
             <h1 class="lead name-lead">Katarina Holzmann Ekholm</h1>
             <p class="meta-line">Film director · b. 1997 · based in Stockholm, Sweden</p>
           </header>
 
           <section class="cv-section">
             <h2>Education</h2>
-            <div class="cv-row"><span class="yr">2020—2024</span><span class="desc">Bachelor of Art and Design — Gerrit Rietveld Academie, VAV — Moving Image, Amsterdam (NL)</span></div>
+            <div class="cv-row"><span class="yr">2020—2024</span><span class="desc">Bachelor of Art and Design, VAV Moving Image — Gerrit Rietveld Academie, Amsterdam (NL)</span></div>
             <div class="cv-row"><span class="yr">2018—2020</span><span class="desc">Foundational Art Education — Dômen Art School, Gothenburg (SE)</span></div>
           </section>
 
           <section class="cv-section">
             <h2>Filmography — Director</h2>
-            <div class="cv-row"><span class="yr">2026</span><span class="desc">Dough <em>(upcoming)</em> — written by Charles Rainey / produced by Nina Marinov (US)</span></div>
-            <div class="cv-row"><span class="yr">2026</span><span class="desc">Cheese <em>(upcoming)</em> — written by Charles Rainey / produced by Nina Marinov (US)</span></div>
-            <div class="cv-row"><span class="yr">2025</span><span class="desc">Hökarängen City — director, writer, editor, producer (NL/SE)</span></div>
-            <div class="cv-row"><span class="yr">2023</span><span class="desc">Mare Lacrimarum — director, writer, editor, producer (NL)</span></div>
+            <div class="cv-row"><span class="yr">2027</span><span class="desc"><em class="film">Dough</em> <em>(upcoming)</em> — written by Charles Rainey / produced by Nina Marinov (US)</span></div>
+            <div class="cv-row"><span class="yr">2027</span><span class="desc"><em class="film">Cheese</em> <em>(upcoming)</em> — written by Charles Rainey / produced by Nina Marinov (US)</span></div>
+            <div class="cv-row"><span class="yr">2025</span><span class="desc"><em class="film">Stacy on Clouds</em> — director, writer, editor, producer (NL)</span></div>
+            <div class="cv-row"><span class="yr">2025</span><span class="desc"><em class="film">Hökarängen City</em> — director, writer, editor, producer (NL/SE)</span></div>
+            <div class="cv-row"><span class="yr">2023</span><span class="desc"><em class="film">Mare Lacrimarum</em> — director, writer, editor, producer (NL)</span></div>
           </section>
 
           <section class="cv-section">
             <h2>Filmography — Director&#39;s assistant &amp; other</h2>
             <p class="cv-note">Selected works</p>
-            <div class="cv-row"><span class="yr">2026</span><span class="desc">Perles de Pluie by Julia Hultman — costume designer (SE/IT)</span></div>
-            <div class="cv-row"><span class="yr">2026</span><span class="desc">Al Haouz by Fatima Agoula — color grader (NL/MA)</span></div>
-            <div class="cv-row"><span class="yr">2025</span><span class="desc">Die Work III by Kaj Snijder — director&#39;s assistant (SE)</span></div>
-            <div class="cv-row"><span class="yr">2024</span><span class="desc">Hyresvärden by Vera Sjunnesson / Momento Film — director&#39;s assistant (SE)</span></div>
-            <div class="cv-row"><span class="yr">2024</span><span class="desc">Die Work II by Kaj Snijder — director&#39;s assistant, editor (SE)</span></div>
-            <div class="cv-row"><span class="yr">2024</span><span class="desc">SOUFOU MAD YIWI YIWI by Fatima Agoula — editor (NL)</span></div>
-            <div class="cv-row"><span class="yr">2023</span><span class="desc">Sun &amp; Moon by Léa Giordano — director&#39;s assistant (NL)</span></div>
+            <div class="cv-row"><span class="yr">2026</span><span class="desc"><em class="film">Perles de Pluie</em> by Julia Hultberg — costume designer (SE/IT)</span></div>
+            <div class="cv-row"><span class="yr">2024</span><span class="desc"><em class="film">Hyresvärden</em> by Vera Sjunnesson / Momento Film — director&#39;s assistant (SE)</span></div>
+            <div class="cv-row"><span class="yr">2024</span><span class="desc"><em class="film">Die Work II</em> by Kaj Snijder — director&#39;s assistant (SE)</span></div>
+            <div class="cv-row"><span class="yr">2024</span><span class="desc"><em class="film">SOUFOU MAD YIWI YIWI</em> by Fatima Agoula — editor (NL)</span></div>
+            <div class="cv-row"><span class="yr">2023</span><span class="desc"><em class="film">Sun &amp; Moon</em> by Léa Giordano — set assistant (NL)</span></div>
           </section>
 
           <section class="cv-section">
@@ -194,7 +178,7 @@
           </section>
 
           <section class="cv-section">
-            <h2>Distribution</h2>
+            <h2>Distribution &amp; Catalogs</h2>
             <div class="cv-row"><span class="yr">2025</span><span class="desc"><a href="https://see-nl.com/artikel-id/22e47aa2-d54a-4f5b-8bda-76d8c21dc979" target="_blank" rel="noopener noreferrer">SEE NL Shorts</a></span></div>
             <div class="cv-row"><span class="yr">2025</span><span class="desc"><a href="https://see-nl.com/artikel-id/22e47aa2-d54a-4f5b-8bda-76d8c21dc979" target="_blank" rel="noopener noreferrer">SEE NL Children&#39;s &amp; Youth Films</a></span></div>
             <div class="cv-row"><span class="yr">2025</span><span class="desc"><a href="https://kortefilmpoule.eyefilm.nl/content/hokarangen-city" target="_blank" rel="noopener noreferrer">Eye&#39;s Short Film Pool</a></span></div>
@@ -278,8 +262,9 @@
                 situation home alone, Myra decides to stay by her side despite
                 her own responsibilities. As Myra navigates between her family
                 duties, school and friendship, she wrestles with maintaining
-                her own identity. Hökarängen City tells the story of Myra and
-                Stacy, navigating a world devoid of adult presence.
+                her own identity. <em class="film">Hökarängen City</em> tells
+                the story of Myra and Stacy, navigating a world devoid of adult
+                presence.
               </p>
               <p class="request">Link upon request.</p>
 
@@ -351,7 +336,7 @@
                 <li>Gerrit Rietveld Academie Graduation Show, Amsterdam <span class="yr">2024</span></li>
               </ul>
 
-              <h2 style="margin-top:22px">Distribution</h2>
+              <h2 style="margin-top:22px">Distribution &amp; Catalogs</h2>
               <ul>
                 <li>SEE NL Shorts <span class="yr">2025</span></li>
                 <li>SEE NL Children's &amp; Youth Films <span class="yr">2025</span></li>
@@ -380,7 +365,7 @@
           <header class="project-head">
             <p class="eyebrow">Boxed — The Series</p>
             <h1 class="lead">Cheese</h1>
-            <p class="meta-line">2026 · Upcoming · Short film</p>
+            <p class="meta-line">2027 · Upcoming · Short film</p>
           </header>
 
           <div class="slider" aria-roledescription="carousel" aria-label="Cheese — stills">
@@ -402,9 +387,9 @@
 
           <div class="project-intro">
             <p class="synopsis">
-              Boxed The Series is an episodic, serialized collection of three
-              shorts about a creature of comfort — a pizza driver who delivers
-              for everyone but himself.
+              <em class="film">Boxed The Series</em> is an episodic, serialized
+              collection of three shorts about a creature of comfort — a pizza
+              driver who delivers for everyone but himself.
             </p>
             <div class="cred">
               <div class="cred-row"><span class="role">Directors</span><span class="name">Katarina Holzmann Ekholm, Charles Rainey</span></div>
@@ -435,7 +420,7 @@
                 <li>Costume Designer — Katelyn Studer</li>
                 <li>Hair &amp; Makeup — Destiny Gordon</li>
                 <li>Casting Directors — Katarina Holzmann Ekholm &amp; Charles Rainey</li>
-                <li>Locations Manager — Charles Rainey</li>
+                <li>Location Manager — Charles Rainey</li>
                 <li>Music Supervisor — Charles Rainey</li>
                 <li>Intimacy Coordinator — Destiny Gordon</li>
               </ul>
@@ -469,7 +454,7 @@
           <header class="project-head">
             <p class="eyebrow">Boxed — The Series</p>
             <h1 class="lead">Dough</h1>
-            <p class="meta-line">2026 · Upcoming · Short film</p>
+            <p class="meta-line">2027 · Upcoming · Short film</p>
           </header>
 
           <div class="slider" aria-roledescription="carousel" aria-label="Dough — stills">
@@ -491,9 +476,9 @@
 
           <div class="project-intro">
             <p class="synopsis">
-              Boxed The Series is an episodic, serialized collection of three
-              shorts about a creature of comfort — a pizza driver who delivers
-              for everyone but himself.
+              <em class="film">Boxed The Series</em> is an episodic, serialized
+              collection of three shorts about a creature of comfort — a pizza
+              driver who delivers for everyone but himself.
             </p>
             <div class="cred">
               <div class="cred-row"><span class="role">Directors</span><span class="name">Katarina Holzmann Ekholm, Charles Rainey</span></div>
@@ -524,7 +509,7 @@
                 <li>Costume Designer — Katelyn Studer</li>
                 <li>Hair &amp; Makeup — Destiny Gordon</li>
                 <li>Casting Directors — Katarina Holzmann Ekholm &amp; Charles Rainey</li>
-                <li>Locations Manager — Charles Rainey</li>
+                <li>Location Manager — Charles Rainey</li>
                 <li>Music Supervisor — Charles Rainey</li>
                 <li>Intimacy Coordinator — Destiny Gordon</li>
               </ul>
@@ -569,8 +554,8 @@
 
           <div class="project-intro">
             <p class="synopsis">
-              Mare Lacrimarum unfolds as day turns to night and the glimmering
-              sea turns into a pitch-black storm.
+              <em class="film">Mare Lacrimarum</em> unfolds as day turns to
+              night and the glimmering sea turns into a pitch-black storm.
             </p>
             <div class="cred">
               <div class="cred-row"><span class="role">Written, Directed &amp; Edited by</span><span class="name">Katarina Holzmann Ekholm</span></div>
@@ -616,7 +601,7 @@
           <a class="back" href="#works" data-nav="works">&#8592;&nbsp;Works</a>
           <header class="project-head">
             <h1 class="lead">Stacy on Clouds</h1>
-            <p class="meta-line">2024 · Work in progress · Short film</p>
+            <p class="meta-line">2025 · Short film</p>
           </header>
 
           <div class="slider" aria-roledescription="carousel" aria-label="Stacy on Clouds — stills">
@@ -632,12 +617,13 @@
 
           <div class="project-intro">
             <p class="synopsis">
-              Stacy on Clouds is a continuation of the short film Hökarängen
-              City. It is an interpretation of the character Stacy's inner
-              emotional life.
+              <em class="film">Stacy on Clouds</em> is a continuation of the
+              short film <em class="film">Hökarängen City</em>. It is an
+              interpretation of the character Stacy's inner emotional life.
             </p>
             <div class="cred">
               <div class="cred-row"><span class="role">Written, Directed &amp; Edited by</span><span class="name">Katarina Holzmann Ekholm</span></div>
+              <div class="cred-row"><span class="role">Produced by</span><span class="name">Katarina Holzmann Ekholm</span></div>
               <div class="cred-row"><span class="role">Starring</span><span class="name">Farida Reda</span></div>
               <div class="cred-row"><span class="role">Director of Photography</span><span class="name">Ward Trommelen</span></div>
               <div class="cred-row"><span class="role">Gaffer</span><span class="name">Tuyl van Grieken</span></div>
@@ -668,7 +654,6 @@
 
     <footer class="botbar">
       <span>© Katarina Holzmann Ekholm</span>
-      <span class="loc">Stockholm, Sweden</span>
     </footer>
   </div>
 
