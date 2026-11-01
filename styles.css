@@ -219,11 +219,15 @@ body.home-active .menu a.active { color: #fff; }
 body.home-active .menu a::after { background: #fff; }
 body.home-active .botbar { color: rgba(255, 255, 255, .85); }
 
-/* Sound toggle for the reel (Home only) */
+/* Sound toggle for the reel (Home only). It sits down on the footer line,
+   its centre level with the copyright in the opposite corner: the footer's
+   own padding, plus half that line, less half the button. The max() keeps
+   it off the bottom edge on short viewports, where the footer padding
+   clamps down below the button's own height. */
 .reel-sound {
   position: fixed;
   right: var(--pad);
-  bottom: clamp(58px, 8vh, 84px);
+  bottom: max(6px, calc(clamp(14px, 2.4vh, 24px) + 7px - 22px));
   z-index: 5;
   width: 44px;
   height: 44px;
